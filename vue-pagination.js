@@ -1,6 +1,6 @@
 module.exports = {
     template: '<nav :class="navClass" v-show="visible">' +
-        '<ul :class="ulClass" >' +
+        '<ul :class="'pagination '+size" >' +
             '<li v-if="pagination.current_page > 1">' +
                 '<a href="#" aria-label="Previous" @click.prevent="changePage(1)">' +
                     '<span aria-hidden="true">First</span>' +
@@ -55,10 +55,6 @@ module.exports = {
             type: String,
             default: ""
         },
-        ulClass: {
-            type: String,
-            default: ""
-        },
         offset: {
             type: Number,
             default: 4
@@ -73,7 +69,6 @@ module.exports = {
         data: function () {
             
             this.visible = 1;
-            this.ulClass = 'pagination ' + this.size;
 
             var from = this.pagination.current_page - this.offset;
             if(from < 1) {
