@@ -88,8 +88,6 @@ module.exports = {
                 from++;
             }
 
-            console.log(arr);
-
             if (arr.length == 1)
                 this.visible = 0;
 
@@ -103,7 +101,7 @@ module.exports = {
     },
     methods: {
         changePage: function (page) {
-            this.$set('pagination.current_page', page);
+            this.pagination.current_page = page;
             this.callback();
         }
     }
