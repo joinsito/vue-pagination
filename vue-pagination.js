@@ -102,7 +102,7 @@ module.exports = {
     methods: {
         changePage: function (page) {
             this.pagination.current_page = page;
-            this.$emit('paginationChangepage', page);
+            this.$parent.$emit('paginationChangepage', page);
         }
     }
 };
