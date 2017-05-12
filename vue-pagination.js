@@ -19,18 +19,18 @@ module.exports = {
             <li v-for="num in data" :class="{'active': num == pagination.current_page}">
                 <a href="#" @click.prevent="changePage(num)">{{ num }}</a>
             </li>
-            <li v-if="pagination.current_page < pagination.total_pages">
+            <li v-if="pagination.current_page < pagination.last_page">
                 <a href="#" aria-label="Next" @click.prevent="changePage(to)">
                     <span aria-hidden="true">...</span>
                 </a>
             </li>
-            <li v-if="pagination.current_page < pagination.total_pages">
+            <li v-if="pagination.current_page < pagination.last_page">
                 <a href="#" aria-label="Next" @click.prevent="changePage(pagination.current_page + 1)">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-            <li v-if="pagination.current_page < pagination.total_pages">
-                <a href="#" aria-label="Next" @click.prevent="changePage(pagination.total_pages)">
+            <li v-if="pagination.current_page < pagination.last_page">
+                <a href="#" aria-label="Next" @click.prevent="changePage(pagination.last_page)">
                     <span aria-hidden="true">Last</span>
                 </a>
             </li>
@@ -76,8 +76,8 @@ module.exports = {
             }
 
             var to = from + (this.offset * 2);
-            if (to >= this.pagination.total_pages) {
-                to = this.pagination.total_pages;
+            if (to >= this.pagination.last_page) {
+                to = this.pagination.last_page;
             }
             this.from = from;
             this.to = to;
@@ -102,7 +102,7 @@ module.exports = {
     methods: {
         changePage: function (page) {
             this.pagination.current_page = page;
-            this.callback();
+            this.callback(page);
         }
     }
 };
